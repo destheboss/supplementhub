@@ -31,7 +31,6 @@ subprojects {
 sonarqube {
     properties {
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.projectName", "SupplementHub"
         property "sonar.organization", "destheboss"
         property "sonar.projectKey", "destheboss_Supplementhub"
         property "sonar.coverage.jacoco.xmlReportPaths", "**/build/reports/jacoco/test/jacocoTestReport.xml"
