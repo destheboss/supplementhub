@@ -1,11 +1,14 @@
 plugins {
     id 'jacoco'
-    id "org.sonarqube" version "5.1.0.4882" apply false
+    id "org.sonarqube" version "5.1.0.4882"
 }
 
 subprojects {
     apply plugin: "jacoco"
-    apply plugin: "org.sonarqube"
+
+    tasks.matching { it.name == "sonar" }.configureEach {
+        enabled = false
+    }
 
     plugins.withId("java") {
         tasks.named("test") {
@@ -25,6 +28,13 @@ subprojects {
     }
 }
 
-tasks.register("allTests") {
-    dependsOn(gradle.includedBuilds.collect { it.task(":test") })
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.projectName", "SupplementHub"
+        property "sonar.organization", "destheboss"
+        property "sonar.projectKey", "destheboss_Supplementhub"
+        property "sonar.coverage.jacoco.xmlReportPaths", "**/build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.exclusions", "**/build/**,**/.gradle/**,**/.idea/**,**/out/**,**/.github/**"
+    }
 }

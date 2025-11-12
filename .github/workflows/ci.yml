@@ -77,4 +77,4 @@ jobs:
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew test jacocoTestReport sonar --no-daemon
+        run: ./gradlew test jacocoTestReport :sonar --no-daemon
