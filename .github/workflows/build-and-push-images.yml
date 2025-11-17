@@ -11,6 +11,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAMESPACE: ${{ github.repository_owner }}
+  JAVA_VERSION: "17"
 
 jobs:
   changes:
@@ -70,6 +71,17 @@ jobs:
         service: ${{ fromJSON(needs.changes.outputs.services-json) }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build jar for ${{ matrix.service }}
+        run: ./gradlew :services:${{ matrix.service }}:bootJar --no-daemon
 
       - uses: docker/setup-qemu-action@v3
 
