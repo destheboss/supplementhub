@@ -43,6 +43,7 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation 'org.testcontainers:postgresql'
 	testImplementation 'io.rest-assured:rest-assured:5.4.0'
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

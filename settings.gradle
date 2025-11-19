@@ -2,3 +2,4 @@ rootProject.name = "Supplementhub"
 include("services:product-service")
 include("services:order-service")
 include("services:inventory-service")
+include ("services:api-gateway")
